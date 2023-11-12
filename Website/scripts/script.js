@@ -59,3 +59,30 @@ class task{
         this.taskDescription = description;
         
     }
+}
+
+function displayTasks(tasks){
+    var tasksListElement = document.getElementById('itemList');
+    
+    for(let i = 0; i < tasks.TaskNum; i++){
+        tasksListElement.innerHTML += `     
+            <div class="item">
+                <h3> ${tasks.getTaskFromIndex(i).TaskName}</h3>
+                <p>${tasks.getTaskFromIndex(i).TaskDescription}</p>
+            </div>
+        `
+
+    }
+}
+
+
+window.onload = function(){
+
+    let tasks = new tasksList();
+
+    tasks.addTask("Plant a tree","Get a sapling and plant a tree");
+
+    console.log(tasks.getTaskFromIndex(0).TaskName);
+
+    displayTasks(tasks);
+}
