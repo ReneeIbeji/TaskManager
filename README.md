@@ -1,2 +1,2 @@
 # TaskManager
-A basic task mamager project I'm working on in my free time
+A basic task manager web app project I'm working on in my free time
