@@ -61,8 +61,38 @@ class task{
     }
 }
 
+
+let newTaskButton;
+let tasksListElement;
+let tasks = new tasksList();
+
+
+window.onload = function(){
+
+    tasks = new tasksList();
+
+    tasksListElement = document.getElementById('itemList');
+
+    newTaskButton = document.getElementById("createTaskButton")
+
+    tasks.addTask("Plant a tree","Get a sapling and plant a tree");
+
+    console.log(tasks.getTaskFromIndex(0).TaskName);
+
+    displayTasks(tasks);
+    newTaskButton = document.getElementById("createTaskButton");
+
+    
+    newTaskButton.addEventListener("click", function() {
+        tasks.addTask("Test","Description");
+        displayTasks(tasks);
+    }); 
+}
+
+
 function displayTasks(tasks){
-    var tasksListElement = document.getElementById('itemList');
+    
+    tasksListElement.innerHTML = "";
     
     for(let i = 0; i < tasks.TaskNum; i++){
         tasksListElement.innerHTML += `     
@@ -73,16 +103,4 @@ function displayTasks(tasks){
         `
 
     }
-}
-
-
-window.onload = function(){
-
-    let tasks = new tasksList();
-
-    tasks.addTask("Plant a tree","Get a sapling and plant a tree");
-
-    console.log(tasks.getTaskFromIndex(0).TaskName);
-
-    displayTasks(tasks);
 }
