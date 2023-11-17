@@ -93,7 +93,7 @@ window.onload = function(){
 
     
     newTaskButton.addEventListener("click", function() {
-        tasks.addTask("Test","Description");
+        tasks.addTask("Task name","Description");
         displayTasks(tasks);
     }); 
 }
