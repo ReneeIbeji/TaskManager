@@ -116,10 +116,7 @@ function displayTasks(tasks){
             </div>
         `;
         
-        
-        document.getElementsByClassName("title")[-1 * (i - tasks.TaskNum + 1)].addEventListener("click", function(evt){
-            evt.target.innerHTML = "Hello";
-        });
+      
         
     }
 
@@ -128,7 +125,7 @@ function displayTasks(tasks){
 
     for(var title of allTitles){
         title.addEventListener("click", function(evt){
-            evt.target.innerHTML =   `<input type="text" id="fname" name="fname">`;
+            evt.target.innerHTML =   `<input type="text" id="fname" name="fname" value="${evt.target.innerHTML}">`;
             evt.target.addEventListener("keypress", function(event){
                 if (event.key === "Enter" && evt.target.parentElement.id != ""){
                     console.log(evt.target.parentElement.id);
@@ -143,7 +140,7 @@ function displayTasks(tasks){
 
     for(var description of allDescriptions){
         description.addEventListener("click", function(evt){
-            evt.target.innerHTML =   `<input type="text" id="fname" name="fname">`;
+            evt.target.innerHTML =   `<input type="text" id="fname" name="fname" value="${evt.target.innerHTML}">`;
             evt.target.addEventListener("keyup", function(event){
                 if (event.key === "Enter" && evt.target.parentElement.id != "" ){
                     console.log(evt.target.parentElement.id);
