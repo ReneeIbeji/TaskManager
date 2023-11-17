@@ -18,11 +18,11 @@ class tasksList{
         // push all current tasks back in the array so they are all next to each other
         for(let i = index + 1; i < taskNumber; i++){
             this.tasks[i - 1] = this.tasks[i];
-       }
+        }
 
-       this.taskNumber--;
-       
+        this.taskNumber--;
         return;
+
     }
 
     get TaskNum(){
@@ -31,6 +31,10 @@ class tasksList{
 
     getTaskFromIndex(index){
         return this.tasks[index];
+    }
+
+    setTaskTitleFromIndex(index, title){
+        this.tasks[index].TaskName = title;
     }
 
 }
@@ -93,14 +97,41 @@ window.onload = function(){
 function displayTasks(tasks){
     
     tasksListElement.innerHTML = "";
-    
-    for(let i = 0; i < tasks.TaskNum; i++){
-        tasksListElement.innerHTML += `     
-            <div class="item">
-                <h3> ${tasks.getTaskFromIndex(i).TaskName}</h3>
-                <p>${tasks.getTaskFromIndex(i).TaskDescription}</p>
-            </div>
-        `
 
+    for(let i = tasks.TaskNum -1 ; i > -1; i--){
+        tasksListElement.innerHTML += `     
+            <div class="item" id="${i}">
+                <div class = "title"  id="${i}">
+                    <h3>${tasks.getTaskFromIndex(i).TaskName}</h3>
+                </div>
+                
+                <div class = "description" id="${i}">
+                    <p>${tasks.getTaskFromIndex(i).TaskDescription}</p>
+                </div>
+            </div>
+        `;
+        
+        
+        document.getElementsByClassName("title")[-1 * (i - tasks.TaskNum + 1)].addEventListener("click", function(evt){
+            evt.target.innerHTML = "Hello";
+        });
+        
     }
+
+
+    let allTitles = document.getElementsByClassName("title");
+
+    for(var title of allTitles){
+        title.addEventListener("click", function(evt){
+            evt.target.innerHTML =   `<input type="text" id="fname" name="fname">`;
+            evt.target.addEventListener("keypress", function(event){
+                if (event.key === "Enter"){
+                    console.log(title.id);
+                    evt.target.innerHTML = `<h3>${event.target.value}</h3>`;
+                    tasks.setTaskTitleFromIndex(title.id,event.target.value); 
+                }
+            })
+        });
+    }
+   return;
 }
