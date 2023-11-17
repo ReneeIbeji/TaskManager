@@ -36,7 +36,12 @@ class tasksList{
     setTaskTitleFromIndex(index, title){
         this.tasks[index].TaskName = title;
     }
+    
 
+    setTaskDescriptionFromIndex(index, description){
+        this.tasks[index].TaskDescription = description;
+    }
+    
 }
 
 class task{
@@ -125,11 +130,26 @@ function displayTasks(tasks){
         title.addEventListener("click", function(evt){
             evt.target.innerHTML =   `<input type="text" id="fname" name="fname">`;
             evt.target.addEventListener("keypress", function(event){
-                if (event.key === "Enter"){
-                    console.log(title.id);
+                if (event.key === "Enter" && evt.target.parentElement.id != ""){
+                    console.log(evt.target.parentElement.id);
                     evt.target.innerHTML = `<h3>${event.target.value}</h3>`;
-                    tasks.setTaskTitleFromIndex(title.id,event.target.value); 
+                    tasks.setTaskTitleFromIndex(parseInt(evt.target.parentElement.id),event.target.value); 
                 }
+            })
+        });
+    }
+    
+    let allDescriptions = document.getElementsByClassName("description");
+
+    for(var description of allDescriptions){
+        description.addEventListener("click", function(evt){
+            evt.target.innerHTML =   `<input type="text" id="fname" name="fname">`;
+            evt.target.addEventListener("keyup", function(event){
+                if (event.key === "Enter" && evt.target.parentElement.id != "" ){
+                    console.log(evt.target.parentElement.id);
+                    evt.target.innerHTML =`<p>${event.target.value}</p>` ;
+                    tasks.setTaskDescriptionFromIndex(parseInt(evt.target.parentElement.id), event.target.value);
+                } 
             })
         });
     }
