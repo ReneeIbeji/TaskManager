@@ -16,9 +16,10 @@ class tasksList{
     removeTask(index){
 
         // push all current tasks back in the array so they are all next to each other
-        for(let i = index + 1; i < taskNumber; i++){
+        for(let i = this.taskNumber - 1; i > index + 1; i--){
             this.tasks[i - 1] = this.tasks[i];
         }
+
 
         this.taskNumber--;
         return;
@@ -113,6 +114,9 @@ function displayTasks(tasks){
                 <div class = "description" id="${i}">
                     <p>${tasks.getTaskFromIndex(i).TaskDescription}</p>
                 </div>
+                <div class ="close">
+                    <h1>X</h1>
+                </div>
             </div>
         `;
         
@@ -125,7 +129,7 @@ function displayTasks(tasks){
 
     for(var title of allTitles){
         title.addEventListener("click", function(evt){
-            evt.target.innerHTML =   `<input type="text" id="fname" name="fname" value="${evt.target.innerHTML}">`;
+            evt.target.innerHTML =   `<input type="text"  value="${evt.target.innerHTML}">`;
             evt.target.addEventListener("keypress", function(event){
                 if (event.key === "Enter" && evt.target.parentElement.id != ""){
                     console.log(evt.target.parentElement.id);
@@ -140,7 +144,7 @@ function displayTasks(tasks){
 
     for(var description of allDescriptions){
         description.addEventListener("click", function(evt){
-            evt.target.innerHTML =   `<input type="text" id="fname" name="fname" value="${evt.target.innerHTML}">`;
+            evt.target.innerHTML =   `<input type="text"  value="${evt.target.innerHTML}">`;
             evt.target.addEventListener("keyup", function(event){
                 if (event.key === "Enter" && evt.target.parentElement.id != "" ){
                     console.log(evt.target.parentElement.id);
@@ -148,6 +152,15 @@ function displayTasks(tasks){
                     tasks.setTaskDescriptionFromIndex(parseInt(evt.target.parentElement.id), event.target.value);
                 } 
             })
+        });
+    }
+
+    let allCloses = document.getElementsByClassName("close");
+
+    for(var close of allCloses){
+        close.addEventListener("click", function(evt){
+            tasks.removeTask(evt.target.parentElement.id);
+            displayTasks(tasks);
         });
     }
    return;
