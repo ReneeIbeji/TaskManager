@@ -16,8 +16,8 @@ class tasksList{
     removeTask(index){
 
         // push all current tasks back in the array so they are all next to each other
-        for(let i = this.taskNumber - 1; i > index + 1; i--){
-            this.tasks[i - 1] = this.tasks[i];
+        for(let i = index; i < this.taskNumber - 1; i++){
+            this.tasks[i] = this.tasks[i + 1];
         }
 
 
