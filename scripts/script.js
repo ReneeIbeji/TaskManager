@@ -133,7 +133,7 @@ function displayTasks(tasks){
             evt.target.addEventListener("keypress", function(event){
                 if (event.key === "Enter" && evt.target.parentElement.id != ""){
                     console.log(evt.target.parentElement.id);
-                    evt.target.innerHTML = `<h3>${event.target.value}</h3>`;
+                    evt.target.parentElement.innerHTML = `<h3>${event.target.value}</h3>`;
                     tasks.setTaskTitleFromIndex(parseInt(evt.target.parentElement.id),event.target.value); 
                 }
             })
@@ -148,7 +148,7 @@ function displayTasks(tasks){
             evt.target.addEventListener("keyup", function(event){
                 if (event.key === "Enter" && evt.target.parentElement.id != "" ){
                     console.log(evt.target.parentElement.id);
-                    evt.target.innerHTML =`<p>${event.target.value}</p>` ;
+                    evt.target.parentElement.innerHTML =`<p>${event.target.value}</p>` ;
                     tasks.setTaskDescriptionFromIndex(parseInt(evt.target.parentElement.id), event.target.value);
                 } 
             })
