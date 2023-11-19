@@ -129,14 +129,34 @@ function displayTasks(tasks){
 
     for(var title of allTitles){
         title.addEventListener("click", function(evt){
-            evt.target.innerHTML =   `<input type="text"  value="${evt.target.innerHTML}">`;
-            evt.target.addEventListener("keypress", function(event){
-                if (event.key === "Enter" && evt.target.parentElement.id != ""){
-                    console.log(evt.target.parentElement.id);
-                    evt.target.parentElement.innerHTML = `<h3>${event.target.value}</h3>`;
-                    tasks.setTaskTitleFromIndex(parseInt(evt.target.parentElement.id),event.target.value); 
-                }
-            })
+            console.log(evt.target.tagname);
+            if(evt.target.tagName === "H3"){
+                var temp = document.createElement("input");
+                var mainTag = evt.target.parentElement;
+
+                temp.type = "text";
+                temp.value = evt.target.innerHTML;
+
+                evt.target.parentElement.appendChild(temp);
+
+                console.log(evt.target.parentElement.children[0]);
+                evt.target.parentElement.removeChild(evt.target.parentElement.children[0]); 
+
+                mainTag.addEventListener("keypress", function(event){
+                    if (event.key === "Enter" && event.target.parentElement != null){
+
+                        console.log(event.target);
+                        var temp = document.createElement("H3");
+                        temp.innerHTML = event.target.value;
+
+                        event.target.parentElement.appendChild(temp);
+
+                        tasks.setTaskTitleFromIndex(parseInt(event.target.parentElement.id),event.target.value); 
+
+                        event.target.parentElement.removeChild(event.target.parentElement.children[0]);
+                    }
+                })
+            }
         });
     }
     
@@ -144,14 +164,34 @@ function displayTasks(tasks){
 
     for(var description of allDescriptions){
         description.addEventListener("click", function(evt){
-            evt.target.innerHTML =   `<input type="text"  value="${evt.target.innerHTML}">`;
-            evt.target.addEventListener("keyup", function(event){
-                if (event.key === "Enter" && evt.target.parentElement.id != "" ){
-                    console.log(evt.target.parentElement.id);
-                    evt.target.parentElement.innerHTML =`<p>${event.target.value}</p>` ;
-                    tasks.setTaskDescriptionFromIndex(parseInt(evt.target.parentElement.id), event.target.value);
-                } 
-            })
+            console.log(evt.target.tagname);
+            if(evt.target.tagName === "P"){
+                var temp = document.createElement("input");
+                var mainTag = evt.target.parentElement;
+
+                temp.type = "text";
+                temp.value = evt.target.innerHTML;
+
+                evt.target.parentElement.appendChild(temp);
+
+                console.log(evt.target.parentElement.children[0]);
+                evt.target.parentElement.removeChild(evt.target.parentElement.children[0]); 
+
+                mainTag.addEventListener("keypress", function(event){
+                    if (event.key === "Enter" && event.target.parentElement != null){
+
+                        console.log(event.target);
+                        var temp = document.createElement("P");
+                        temp.innerHTML = event.target.value;
+
+                        event.target.parentElement.appendChild(temp);
+
+                        tasks.setTaskDescriptionFromIndex(parseInt(event.target.parentElement.id),event.target.value); 
+
+                        event.target.parentElement.removeChild(event.target.parentElement.children[0]);
+                    }
+                })
+            }
         });
     }
 
