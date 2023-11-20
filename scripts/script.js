@@ -147,11 +147,11 @@ function displayTasks(tasks){
 
                         console.log(event.target);
                         var temp = document.createElement("H3");
-                        temp.innerHTML = event.target.value;
+                        temp.innerHTML = removeTagsFromText(event.target.value);
 
                         event.target.parentElement.appendChild(temp);
 
-                        tasks.setTaskTitleFromIndex(parseInt(event.target.parentElement.id),event.target.value); 
+                        tasks.setTaskTitleFromIndex(parseInt(event.target.parentElement.id),removeTagsFromText(event.target.value)); 
 
                         event.target.parentElement.removeChild(event.target.parentElement.children[0]);
                     }
@@ -182,11 +182,11 @@ function displayTasks(tasks){
 
                         console.log(event.target);
                         var temp = document.createElement("P");
-                        temp.innerHTML = event.target.value;
+                        temp.innerHTML = removeTagsFromText(event.target.value);
 
                         event.target.parentElement.appendChild(temp);
 
-                        tasks.setTaskDescriptionFromIndex(parseInt(event.target.parentElement.id),event.target.value); 
+                        tasks.setTaskDescriptionFromIndex(parseInt(event.target.parentElement.id),removeTagsFromText(event.target.value)); 
 
                         event.target.parentElement.removeChild(event.target.parentElement.children[0]);
                     }
@@ -204,4 +204,38 @@ function displayTasks(tasks){
         });
     }
    return;
+}
+
+function removeTagsFromText(text){
+    let tagStart = [];
+    let tagOpenNum = 0;
+    
+    for(let i = 0; i < text.length; i++){
+        if(text[i] === '<'){
+            tagStart[tagOpenNum] =  i;
+            tagOpenNum++;
+        }
+        else if(text[i] === '>' && tagOpenNum != 0){
+            for(let z = tagStart[tagOpenNum - 1]; z <=  i; z++){
+                text = replaceChar(text,' ',z);
+            }
+            tagOpenNum--;
+        }
+
+    
+    
+    }
+    console.log(text);
+    return text;
+}
+
+function replaceChar(origString, replaceChar, index) {
+    let firstPart = origString.substr(0, index);
+
+    let lastPart = origString.substr(index + 1);
+
+    let newString =
+        firstPart + replaceChar + lastPart;
+
+    return newString;
 }
