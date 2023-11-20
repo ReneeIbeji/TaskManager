@@ -87,7 +87,7 @@ window.onload = function(){
 
     tasks.addTask("Plant a tree","Get a sapling and plant a tree");
 
-    console.log(tasks.getTaskFromIndex(0).TaskName);
+    (tasks.getTaskFromIndex(0).TaskName);
 
     displayTasks(tasks);
     newTaskButton = document.getElementById("createTaskButton");
@@ -114,7 +114,7 @@ function displayTasks(tasks){
                 <div class = "description" id="${i}">
                     <p>${tasks.getTaskFromIndex(i).TaskDescription}</p>
                 </div>
-                <div class ="close">
+                <div class ="close" id="${i}">
                     <h1>X</h1>
                 </div>
             </div>
@@ -129,7 +129,7 @@ function displayTasks(tasks){
 
     for(var title of allTitles){
         title.addEventListener("click", function(evt){
-            console.log(evt.target.tagname);
+            (evt.target.tagname);
             if(evt.target.tagName === "H3"){
                 var temp = document.createElement("input");
                 var mainTag = evt.target.parentElement;
@@ -139,13 +139,13 @@ function displayTasks(tasks){
 
                 evt.target.parentElement.appendChild(temp);
 
-                console.log(evt.target.parentElement.children[0]);
+                (evt.target.parentElement.children[0]);
                 evt.target.parentElement.removeChild(evt.target.parentElement.children[0]); 
 
                 mainTag.addEventListener("keypress", function(event){
                     if (event.key === "Enter" && event.target.parentElement != null){
 
-                        console.log(event.target);
+                        (event.target);
                         var temp = document.createElement("H3");
                         temp.innerHTML = removeTagsFromText(event.target.value);
 
@@ -164,7 +164,7 @@ function displayTasks(tasks){
 
     for(var description of allDescriptions){
         description.addEventListener("click", function(evt){
-            console.log(evt.target.tagname);
+            (evt.target.tagname);
             if(evt.target.tagName === "P"){
                 var temp = document.createElement("input");
                 var mainTag = evt.target.parentElement;
@@ -174,13 +174,13 @@ function displayTasks(tasks){
 
                 evt.target.parentElement.appendChild(temp);
 
-                console.log(evt.target.parentElement.children[0]);
+                (evt.target.parentElement.children[0]);
                 evt.target.parentElement.removeChild(evt.target.parentElement.children[0]); 
 
                 mainTag.addEventListener("keypress", function(event){
                     if (event.key === "Enter" && event.target.parentElement != null){
 
-                        console.log(event.target);
+                        (event.target);
                         var temp = document.createElement("P");
                         temp.innerHTML = removeTagsFromText(event.target.value);
 
@@ -199,7 +199,7 @@ function displayTasks(tasks){
 
     for(var close of allCloses){
         close.addEventListener("click", function(evt){
-            tasks.removeTask(evt.target.parentElement.id);
+            tasks.removeTask( parseInt(evt.target.parentElement.id));
             displayTasks(tasks);
         });
     }
@@ -225,7 +225,7 @@ function removeTagsFromText(text){
     
     
     }
-    console.log(text);
+    (text);
     return text;
 }
 
