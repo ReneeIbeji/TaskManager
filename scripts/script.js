@@ -199,8 +199,10 @@ function displayTasks(tasks){
 
     for(var close of allCloses){
         close.addEventListener("click", function(evt){
-            tasks.removeTask( parseInt(evt.target.parentElement.id));
-            displayTasks(tasks);
+            if(evt.target.parentElement.id != null){
+                tasks.removeTask( parseInt(evt.target.parentElement.id));
+                displayTasks(tasks);
+            }
         });
     }
    return;
