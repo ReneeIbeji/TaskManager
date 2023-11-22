@@ -3,6 +3,7 @@ export class task {
     constructor(taskName, taskDescription) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
+        this.done = false;
     }
 
     get TaskName() {
@@ -21,5 +22,13 @@ export class task {
     set TaskDescription(description) {
         this.taskDescription = description;
 
+    }
+
+    get Done(){
+        return this.done;
+    }
+
+    set Done(done){
+        this.done = done;
     }
 }

@@ -43,6 +43,9 @@ function displayTasks(tasks){
                 <div class = "description" id="${i}">
                     <p>${tasks.getTaskFromIndex(i).TaskDescription}</p>
                 </div>
+                <div class ="done" id="${i}">
+                    <input type="checkbox" name="checkbox" ${((tasks.getTaskFromIndex(i).Done) ? "checked" : "")}>
+                </div>
                 <div class ="close" id="${i}">
                     <h1>X</h1>
                 </div>
@@ -56,6 +59,7 @@ function displayTasks(tasks){
 
     let allTitles = document.getElementsByClassName("title");
 
+    // Set up task title value edit on click function
     for(var title of allTitles){
         title.addEventListener("click", function(evt){
             (evt.target.tagname);
@@ -90,7 +94,8 @@ function displayTasks(tasks){
     }
     
     let allDescriptions = document.getElementsByClassName("description");
-
+    
+    // Set up task description value edit on click function
     for(var description of allDescriptions){
         description.addEventListener("click", function(evt){
             (evt.target.tagname);
@@ -133,6 +138,14 @@ function displayTasks(tasks){
                 displayTasks(tasks);
             }
         });
+    }
+
+    let allCheckBoxes = document.getElementsByClassName("done");
+    
+    for(var checkBox of allCheckBoxes){
+        checkBox.addEventListener("click", function(evt){
+            tasks.setTaskCompletionFromIndex(parseInt(evt.target.parentElement.id), evt.target.checked);
+        })
     }
    return;
 }
