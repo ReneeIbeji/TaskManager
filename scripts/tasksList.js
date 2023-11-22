@@ -44,8 +44,4 @@ export class tasksList {
         this.tasks[index].TaskDescription = description;
     }
 
-    setTaskCompletionFromIndex(index, done){
-        this.tasks[index].Done = done;
-    }
-
 }
