@@ -1,4 +1,7 @@
 export class task {
+    #taskName;
+    #taskDescription;
+    #done;
 
     constructor(taskName, taskDescription) {
         this.taskName = taskName;

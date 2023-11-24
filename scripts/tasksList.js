@@ -1,6 +1,8 @@
 import {task} from "./task.js";
 export class tasksList {
 
+    #tasks;
+    #taskNumber;
 
     constructor() {
         this.tasks = [];
