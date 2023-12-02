@@ -35,6 +35,21 @@ body {
 }
 
 
+@keyframes taskHover{
+    0%{
+        background-color: #222e50;
+    }
+    100%{
+        
+        background-color:#2e406e ;
+    }
+}
+
+.item:hover{
+    animation: taskHover 0.25s ease-out forwards;
+    background-color:#2e406e ;
+}
+
 div.title > input 
 {
     width: 100%;

@@ -5,9 +5,11 @@ import {tasksList} from './tasksList.js';
 let newTaskButton;
 let tasksListElement;
 let tasks = new tasksList();
+let taskDB;
 
+window.onload = function()
+{
 
-window.onload = function(){
 
     tasks = new tasksList();
     tasksListElement = document.getElementById('itemList');
@@ -26,6 +28,10 @@ window.onload = function(){
         tasks.addTask("Task name","Description");
         displayTasks(tasks);
     }); 
+
+
+
+
 }
 
 
